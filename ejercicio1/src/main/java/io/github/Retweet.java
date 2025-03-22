@@ -17,4 +17,14 @@ public class Retweet implements Post{
         return true;
     }
 
+    @Override
+    public boolean publicacionDebeEliminarse(Usuario user) {
+        if(this.esRetweet()) {
+            return this.tweetDeOrigen.publicacionDebeEliminarse(user);
+        } else {
+            return user.contienePost(this);
+        }
+
+    }
+
 }

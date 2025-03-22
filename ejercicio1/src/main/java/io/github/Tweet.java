@@ -4,7 +4,6 @@ import java.util.List;
 
 public class Tweet implements Post{
     private String textoAsociado;
-    private List<Retweet> retweetsAlPosteo;
 
     public Tweet(String textoAsociado) {
         this.textoAsociado = textoAsociado;
@@ -20,12 +19,9 @@ public class Tweet implements Post{
         return false;
     }
 
-    public void agregarReposteo(Retweet reposteo) {
-        this.retweetsAlPosteo.add(reposteo);
-    }
-
-    public void eliminarReposteos() {
-        this.retweetsAlPosteo.clear();
+    @Override
+    public boolean publicacionDebeEliminarse(Usuario user) {
+        return user.contienePost(this);
     }
 
 }

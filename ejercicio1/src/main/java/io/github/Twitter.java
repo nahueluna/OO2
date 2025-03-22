@@ -22,7 +22,7 @@ public class Twitter {
 
     public void eliminarUsuario(Usuario user) {
         if(user != null && this.existeUsuario(user)) {
-            user.eliminarPosts();
+            this.usuarios.stream().forEach(u -> u.eliminarPosts(user));
             this.usuarios.remove(user);
         }
     }

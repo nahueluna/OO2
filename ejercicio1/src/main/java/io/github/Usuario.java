@@ -32,13 +32,17 @@ public class Usuario {
     public void repostearTweet(Tweet tweet) {
         Retweet retweet = new Retweet(tweet);
         this.publicaciones.add(retweet);
-        tweet.agregarReposteo(retweet);
     }
 
-    void eliminarPosts() {
-        this.publicaciones.stream()
-                .filter(p -> !p.esRetweet())
-                .forEach(t -> ((Tweet) t).eliminarReposteos()); // Downcasting seguro por booleano
-        this.publicaciones.clear();
+    public boolean contienePost(Post publicacion) {
+        return this.publicaciones.contains(publicacion);
+    }
+
+    void eliminarPosts(Usuario user) {
+        for(Post publicacion: this.publicaciones) {
+            if(publicacion.publicacionDebeEliminarse(user)) {
+                this.publicaciones.remove(publicacion);
+            }
+        }
     }
 }

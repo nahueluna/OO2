@@ -94,7 +94,8 @@ Las variables de instancia de ambas clases, al tener visibilidad pública, rompe
 ### Bad Smell: Duplicate Code
 Las variables de instancia de las tres clases se repiten
 
-### Refactoring: Extract Superclass (ocasiona un Pull Up Field)
+### Refactoring: Extract Superclass
+nota: `Extract Superclass` ya implica `Pull Up Method`, no es necesario mencionarlo 
 
 ```java
 1.  public abstract class Empleado {
@@ -233,7 +234,9 @@ Los métodos `sueldo` de cada subclase poseen lógica que puede ser agrupada en 
 ### Bad Smell: Duplicate Code
 Se repiten métodos `sueldo()` y `calcularSustraccionSegunSueldoBasico()` en las subclases. 
 
-### Refactoring: Pull Up Method
+### Refactoring: Form Template Method
+nota: `Form Template Method` puede implicar `Extract Method`, para luego realizar `Pull Up Method` de los pasos comunes y un override en las subclases para el comportamiento específico.
+El cambio de `calcularSustraccionSegunSueldoBasico()` de público a privado (cuando se subió a la superclase) debería haber implicado un refactoring aparte
 
 ```java
 1.  public abstract class Empleado {
